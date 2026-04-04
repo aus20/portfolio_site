@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import { CareerChat } from "@/components/CareerChat";
 import { site } from "@/content/profile";
 
 const geistSans = Geist({
@@ -56,6 +57,7 @@ export default function RootLayout({
       >
         <div className="page-bg" aria-hidden />
         {children}
+        <CareerChat />
       </body>
     </html>
   );

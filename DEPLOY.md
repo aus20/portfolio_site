@@ -34,6 +34,10 @@ DNS can take a few minutes to 48 hours. Vercel issues HTTPS automatically once D
 
 In Vercel **Domains**, set the preferred primary domain; Vercel can redirect the other hostname to it.
 
+## 7. Environment variables (career chat)
+
+The floating **Career Q&A** chat calls OpenRouter from a server route. In Vercel: **Project → Settings → Environment Variables**, add **`OPENROUTER_API_KEY`** with your [OpenRouter](https://openrouter.ai) API key (same name as in local `.env`). Redeploy after adding or changing it so the key is available at build/runtime. Without it, the API returns a clear “not configured” error.
+
 ---
 
 **Reminder:** GoDaddy keeps **domain registration**; **Vercel hosts** the app. You only point DNS from GoDaddy to Vercel.
