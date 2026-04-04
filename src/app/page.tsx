@@ -1,103 +1,231 @@
-import Image from "next/image";
+import { CareerTimeline } from "@/components/CareerTimeline";
+import { Nav } from "@/components/Nav";
+import { Section } from "@/components/Section";
+import { SiteFooter } from "@/components/SiteFooter";
+import { ButtonLink } from "@/components/ButtonLink";
+import {
+  aboutParagraphs,
+  careerJourney,
+  contact,
+  cvPath,
+  education,
+  featuredProjects,
+  focusAreas,
+  site,
+  technicalSkills,
+} from "@/content/profile";
 
 export default function Home() {
   return (
-    <div className="font-sans grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="font-mono list-inside list-decimal text-sm/6 text-center sm:text-left">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] font-mono font-semibold px-1 py-0.5 rounded">
-              src/app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
+    <>
+      <Nav />
+      <main>
+        <section className="relative pt-32 pb-24 md:pt-40 md:pb-32">
+          <div className="mx-auto max-w-6xl px-6">
+            <p className="font-mono text-xs uppercase tracking-[0.25em] text-accent">
+              Software engineer · Istanbul
+            </p>
+            <h1 className="mt-6 max-w-4xl text-4xl font-semibold tracking-tight text-text-primary sm:text-5xl md:text-6xl md:leading-[1.08]">
+              {site.name.split(" ")[0]}
+              <span className="text-text-muted"> </span>
+              <span className="bg-gradient-to-r from-text-primary via-accent to-text-primary/90 bg-clip-text text-transparent">
+                {site.name.split(" ").slice(1).join(" ")}
+              </span>
+            </h1>
+            <p className="mt-6 max-w-2xl text-lg leading-relaxed text-text-muted md:text-xl">
+              JVM backends, event-driven architecture, and production NLP
+              platforms—built with the discipline of enterprise engineering and
+              the sharpness of a product-minded builder.
+            </p>
+            <div className="mt-10 flex flex-wrap items-center gap-4">
+              <ButtonLink href={cvPath} download variant="primary">
+                Download CV
+              </ButtonLink>
+              <ButtonLink href="#career" variant="secondary">
+                Career journey
+              </ButtonLink>
+              <ButtonLink href={`mailto:${contact.email}`} variant="ghost">
+                Email me
+              </ButtonLink>
+            </div>
+            <dl className="mt-16 grid gap-6 border-t border-border-subtle pt-10 sm:grid-cols-3">
+              <div>
+                <dt className="font-mono text-xs uppercase tracking-wider text-text-muted">
+                  Focus
+                </dt>
+                <dd className="mt-2 text-sm text-text-primary">
+                  Backend, data, NLP
+                </dd>
+              </div>
+              <div>
+                <dt className="font-mono text-xs uppercase tracking-wider text-text-muted">
+                  Core stack
+                </dt>
+                <dd className="mt-2 text-sm text-text-primary">
+                  Java, Spring, Kafka, Python
+                </dd>
+              </div>
+              <div>
+                <dt className="font-mono text-xs uppercase tracking-wider text-text-muted">
+                  Education
+                </dt>
+                <dd className="mt-2 text-sm text-text-primary">
+                  Koç University · dual B.S.
+                </dd>
+              </div>
+            </dl>
+          </div>
+        </section>
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
-        </div>
+        <Section
+          id="about"
+          eyebrow="Profile"
+          title="About me"
+          subtitle="Dual training in computer science and molecular biology shapes how I approach complex systems."
+        >
+          <div className="grid gap-12 lg:grid-cols-[1fr_320px] lg:items-start">
+            <div className="space-y-6 text-lg leading-relaxed text-text-muted">
+              {aboutParagraphs.map((p, i) => (
+                <p key={i}>{p}</p>
+              ))}
+            </div>
+            <aside className="rounded-lg border border-border-subtle bg-bg-card/80 p-6 backdrop-blur-sm">
+              <h3 className="font-mono text-xs uppercase tracking-wider text-accent">
+                Focus areas
+              </h3>
+              <ul className="mt-4 flex flex-wrap gap-2">
+                {focusAreas.map((area) => (
+                  <li
+                    key={area}
+                    className="rounded border border-border-subtle bg-bg-elevated px-3 py-1.5 text-sm text-text-primary"
+                  >
+                    {area}
+                  </li>
+                ))}
+              </ul>
+              <h3 className="mt-8 font-mono text-xs uppercase tracking-wider text-accent">
+                Education
+              </h3>
+              <ul className="mt-4 space-y-4 text-sm text-text-muted">
+                {education.map((e) => (
+                  <li key={e.school}>
+                    <p className="font-medium text-text-primary">{e.school}</p>
+                    <p className="text-xs text-text-muted">{e.period}</p>
+                    <p className="mt-1">{e.detail}</p>
+                  </li>
+                ))}
+              </ul>
+            </aside>
+          </div>
+        </Section>
+
+        <Section
+          id="career"
+          eyebrow="Timeline"
+          title="Career journey"
+          subtitle="From structural biology research to shipping NLP and microservices in production."
+        >
+          <CareerTimeline entries={careerJourney} />
+        </Section>
+
+        <Section
+          id="projects"
+          eyebrow="Selected work"
+          title="Projects & internships"
+          subtitle="Hands-on builds across full stack, data engineering, and ML—details on the CV."
+        >
+          <ul className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+            {featuredProjects.map((proj) => (
+              <li
+                key={proj.name}
+                className="flex flex-col rounded-lg border border-border-subtle bg-bg-card/60 p-6 transition-colors hover:border-accent/25"
+              >
+                <p className="font-mono text-xs text-accent">{proj.context}</p>
+                <h3 className="mt-2 text-lg font-semibold text-text-primary">
+                  {proj.name}
+                </h3>
+                <p className="mt-3 flex-1 text-sm leading-relaxed text-text-muted">
+                  {proj.summary}
+                </p>
+              </li>
+            ))}
+          </ul>
+          <div className="mt-14 rounded-lg border border-border-subtle bg-bg-elevated/80 p-8">
+            <h3 className="font-mono text-xs uppercase tracking-wider text-accent">
+              Technical skills
+            </h3>
+            <dl className="mt-6 grid gap-6 sm:grid-cols-2">
+              <div>
+                <dt className="text-xs font-medium text-text-muted">
+                  Programming
+                </dt>
+                <dd className="mt-1 text-sm text-text-primary">
+                  {technicalSkills.programming}
+                </dd>
+              </div>
+              <div>
+                <dt className="text-xs font-medium text-text-muted">
+                  Frameworks
+                </dt>
+                <dd className="mt-1 text-sm text-text-primary">
+                  {technicalSkills.frameworks}
+                </dd>
+              </div>
+              <div>
+                <dt className="text-xs font-medium text-text-muted">
+                  Data & infra
+                </dt>
+                <dd className="mt-1 text-sm text-text-primary">
+                  {technicalSkills.dataInfra}
+                </dd>
+              </div>
+              <div>
+                <dt className="text-xs font-medium text-text-muted">
+                  Data science
+                </dt>
+                <dd className="mt-1 text-sm text-text-primary">
+                  {technicalSkills.dataScience}
+                </dd>
+              </div>
+              <div>
+                <dt className="text-xs font-medium text-text-muted">
+                  Tools & DevOps
+                </dt>
+                <dd className="mt-1 text-sm text-text-primary">
+                  {technicalSkills.tools}
+                </dd>
+              </div>
+              <div>
+                <dt className="text-xs font-medium text-text-muted">Other</dt>
+                <dd className="mt-1 text-sm text-text-primary">
+                  {technicalSkills.other}
+                </dd>
+              </div>
+            </dl>
+          </div>
+        </Section>
+
+        <section className="border-y border-border-subtle bg-bg-card/30 py-20 md:py-24">
+          <div className="mx-auto max-w-6xl px-6 text-center">
+            <h2 className="text-2xl font-semibold tracking-tight text-text-primary md:text-3xl">
+              Full résumé
+            </h2>
+            <p className="mx-auto mt-4 max-w-xl text-text-muted">
+              Download the PDF for complete project descriptions, activities, and
+              formatting you can share with hiring teams.
+            </p>
+            <div className="mt-8 flex flex-wrap justify-center gap-4">
+              <ButtonLink href={cvPath} download variant="primary">
+                Download PDF
+              </ButtonLink>
+              <ButtonLink href="/cv" variant="secondary">
+                View in browser
+              </ButtonLink>
+            </div>
+          </div>
+        </section>
       </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
-    </div>
+      <SiteFooter />
+    </>
   );
 }

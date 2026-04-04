@@ -39,3 +39,6 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# Duplicate of public/cv/ (keep a single PDF in the repo)
+/aus20_cv_2026.pdf
