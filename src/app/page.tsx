@@ -208,7 +208,7 @@ export default function Home() {
         <section className="border-y border-border-subtle bg-bg-card/30 py-20 md:py-24">
           <div className="mx-auto max-w-6xl px-6 text-center">
             <h2 className="text-2xl font-semibold tracking-tight text-text-primary md:text-3xl">
-              Full résumé
+              Full resume
             </h2>
             <p className="mx-auto mt-4 max-w-xl text-text-muted">
               Download the PDF for complete project descriptions, activities, and
