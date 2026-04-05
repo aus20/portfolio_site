@@ -203,18 +203,37 @@ export function CareerChat() {
         </div>
       ) : null}
 
-      <button
-        type="button"
-        onClick={() => setOpen((o) => !o)}
-        className="flex h-14 w-14 items-center justify-center rounded-full border border-border-subtle bg-bg-card/90 text-accent shadow-lg shadow-black/40 backdrop-blur-md transition-transform hover:scale-105 hover:border-accent/40 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent motion-reduce:transition-none"
-        aria-expanded={open}
-        aria-controls="career-chat-panel"
-        aria-label={open ? "Close career chat" : "Open career chat"}
-      >
-        <span className="font-mono text-xs font-semibold tracking-tight">
-          AI
-        </span>
-      </button>
+      <div className="relative group">
+        {!open && (
+          <div className="absolute -inset-1 animate-ping rounded-full bg-accent/30 opacity-75 duration-[2000ms]"></div>
+        )}
+        <button
+          type="button"
+          onClick={() => setOpen((o) => !o)}
+          className={`relative flex items-center justify-center gap-2 rounded-full border border-border-subtle bg-bg-card/95 text-accent shadow-xl shadow-black/50 backdrop-blur-md transition-all duration-300 hover:scale-105 hover:border-accent/60 hover:bg-bg-elevated focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent motion-reduce:transition-none ${
+            open ? "h-14 w-14" : "h-14 px-6"
+          }`}
+          aria-expanded={open}
+          aria-controls="career-chat-panel"
+          aria-label={open ? "Close career chat" : "Open career chat"}
+        >
+          {open ? (
+            <span className="font-mono text-xl font-medium tracking-tight">
+              ×
+            </span>
+          ) : (
+            <>
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="h-5 w-5">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09z" />
+                <path strokeLinecap="round" strokeLinejoin="round" d="M18.259 8.715L18 9.75l-.259-1.035a3.375 3.375 0 00-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 002.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 002.456 2.456L21.75 6l-1.035.259a3.375 3.375 0 00-2.456 2.456zM16.894 20.567L16.5 21.75l-.394-1.183a2.25 2.25 0 00-1.423-1.423L13.5 18.75l1.183-.394a2.25 2.25 0 001.423-1.423l.394-1.183.394 1.183a2.25 2.25 0 001.423 1.423l1.183.394-1.183.394a2.25 2.25 0 00-1.423 1.423z" />
+              </svg>
+              <span className="font-mono text-[15px] font-semibold tracking-tight">
+                Ask AI
+              </span>
+            </>
+          )}
+        </button>
+      </div>
     </div>
   );
 }
